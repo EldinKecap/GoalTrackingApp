@@ -20,8 +20,9 @@ export default function GoalsMenu(){
             Your Goals
         </Typography>
         <List>
-            <ListItemButton divider alignItems='center' sx={{color:'gray'}} selected>
-                sdafdsf
+            <ListItemButton divider sx={{color:'gray',
+        justifyContent:'center',wordBreak:"break-all"}} selected>
+                sdafdsfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             </ListItemButton>
         </List>
         
