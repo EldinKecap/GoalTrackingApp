@@ -13,7 +13,7 @@ export default function GoalCreateForm(){
     </InputLabel>
     <Input id="my-input" aria-describedby="goalName" color="success" sx={{color:'white'}} />
     <FormHelperText id="goalName" sx={{color:'white'}}>Create your goal</FormHelperText>
-    <Button variant="outlined">Create</Button>
+    <Button variant="contained"  color='success'>Create</Button>
   </FormControl>
   
 }
