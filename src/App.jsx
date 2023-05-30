@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import GoalsMenu from './components/goalsMenu'
-import GoalCreateForm from './components/goalCreateForm'
+import './App.css';
+import GoalsMenu from './components/GoalsMenu';
+import GoalCreateForm from './components/GoalCreateForm';
+import Layout from './components/Layout';
 
 function App() {
   
 
   return (
     <>
+    <Layout >
       <GoalsMenu/>
       <GoalCreateForm/>
+    </Layout>
     </>
   )
 }
