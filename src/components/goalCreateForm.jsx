@@ -16,7 +16,7 @@ export default function GoalCreateForm() {
       <FormControl sx={classes.form}>
         <TextField variant="outlined" label="Enter goal" required >
         </TextField>
-        <Button variant="contained" color="success">
+        <Button variant="contained" color="success" type="submit">
           Create
         </Button>
       </FormControl>

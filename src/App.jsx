@@ -1,6 +1,6 @@
 import './App.css';
 import GoalsMenu from './components/GoalsMenu';
-import GoalCreateForm from './components/GoalCreateForm';
+import GoalCreateForm from './components/goalCreateForm';
 import Layout from './components/Layout';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <>
     <Layout >
       <GoalsMenu/>
-      <GoalCreateForm/>
+      {/* <GoalCreateForm/> */}
     </Layout>
     </>
   )
