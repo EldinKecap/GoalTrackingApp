@@ -10,9 +10,9 @@ function App() {
   return (
     <>
     <Layout >
-      <GoalsMenu/>
+      {/* <GoalsMenu/> */}
       {/* <GoalCreateForm/> */}
-      <GoalCalendar/>
+      <GoalCalendar datesForCompletedGoals={[new Date().toISOString().slice(0,10)]}/>
     </Layout>
     </>
   )
