@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export default function GoalsMenu() {
   const [checkBoxValues, setCheckBoxValues] = useState({});
   const [goals, setGoals] = useState([]);
-  const drawerWidth = 300;
+  const drawerWidth = "30%";
 
   useEffect(() => {
     const serverUrl = import.meta.env.VITE_SERVER_URL;
