@@ -1,7 +1,7 @@
 import { Box, Paper, Typography } from "@mui/material";
 import React from "react";
   const classes = {
-    weekdayLabel: {
+    datesAndWeekdayLabel: {
       fontSize: "10px",
       lineHeight: "1",
       marginTop: "4px",
@@ -78,63 +78,63 @@ export default function GoalCalendar({datesForCompletedGoals}) {
   <Box sx={classes.container}>
     <Box sx={classes.monthsContainer}>
      <div></div>
-    <Typography key="jan" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="jan" sx={classes.datesAndWeekdayLabel} variant="body2">
         Jan
       </Typography>
-    <Typography key="feb" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="feb" sx={classes.datesAndWeekdayLabel} variant="body2">
         Feb
       </Typography>
-    <Typography key="mar" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="mar" sx={classes.datesAndWeekdayLabel} variant="body2">
         Mar
       </Typography>
-    <Typography key="apr" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="apr" sx={classes.datesAndWeekdayLabel} variant="body2">
         Apr
       </Typography>
-    <Typography key="may" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="may" sx={classes.datesAndWeekdayLabel} variant="body2">
         May
       </Typography>
-    <Typography key="jun" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="jun" sx={classes.datesAndWeekdayLabel} variant="body2">
         Jun
       </Typography>
-    <Typography key="jul" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="jul" sx={classes.datesAndWeekdayLabel} variant="body2">
         Jul
       </Typography>
-    <Typography key="aug" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="aug" sx={classes.datesAndWeekdayLabel} variant="body2">
         Aug
       </Typography>
-    <Typography key="sep" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="sep" sx={classes.datesAndWeekdayLabel} variant="body2">
         Sep
       </Typography>
-    <Typography key="oct" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="oct" sx={classes.datesAndWeekdayLabel} variant="body2">
         Oct
       </Typography>
-    <Typography key="nov" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="nov" sx={classes.datesAndWeekdayLabel} variant="body2">
         Nov
       </Typography>
-    <Typography key="dec" sx={classes.weekdayLabel} variant="body2">
+    <Typography key="dec" sx={classes.datesAndWeekdayLabel} variant="body2">
         Dec
       </Typography>
     </Box>
     <Box sx={classes.datesAndWeekdaysContainer}>
-      <Typography key="mon" sx={classes.weekdayLabel} variant="body2">
+      <Typography key="mon" sx={classes.datesAndWeekdayLabel} variant="body2">
         Mon
       </Typography>
-      <Typography key="tue" sx={classes.weekdayLabel} variant="body2">
+      <Typography key="tue" sx={classes.datesAndWeekdayLabel} variant="body2">
         Tue
       </Typography>
-      <Typography key="wed" sx={classes.weekdayLabel} variant="body2">
+      <Typography key="wed" sx={classes.datesAndWeekdayLabel} variant="body2">
         Wed
       </Typography>
-      <Typography key="thu" sx={classes.weekdayLabel} variant="body2">
+      <Typography key="thu" sx={classes.datesAndWeekdayLabel} variant="body2">
         Thu
       </Typography>
-      <Typography key="fri" sx={classes.weekdayLabel} variant="body2">
+      <Typography key="fri" sx={classes.datesAndWeekdayLabel} variant="body2">
         Fri
       </Typography>
-      <Typography key="sat" sx={classes.weekdayLabel} variant="body2">
+      <Typography key="sat" sx={classes.datesAndWeekdayLabel} variant="body2">
         Sat
       </Typography>
-      <Typography key="sun" sx={classes.weekdayLabel} variant="body2">
+      <Typography key="sun" sx={classes.datesAndWeekdayLabel} variant="body2">
         Sun
       </Typography>
       {datesForTheWholeYear.map((date) => {
