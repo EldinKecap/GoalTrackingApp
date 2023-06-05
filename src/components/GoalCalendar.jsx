@@ -146,7 +146,6 @@ export default function GoalCalendar({datesForCompletedGoals}) {
         const month = ((date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1));
         const day = (date.getDate() < 10 ? "0" + date.getDate() : date.getDate());
         const dateInISOStringForComparingWithCompletedGoalsDates = year + "-" + month + "-" + day;
-        console.log(dateInISOStringForComparingWithCompletedGoalsDates);
 
         if (datesForCompletedGoals != undefined && datesForCompletedGoals.includes(dateInISOStringForComparingWithCompletedGoalsDates)) {
           return <Paper key={dateInISOStringForComparingWithCompletedGoalsDates} sx={{...classes.day,backgroundColor:"lightgreen"}}></Paper>;
