@@ -9,22 +9,28 @@ import React from "react";
     day: {
       width: 10,
       height: 10,
-      background: "lightgray",
+      background: "darkgray",
       borderRadius: "2px",
       color: "transparent",
       fontSize: "10px",
       marginTop: "4px",
     },
-    container: {
-      background: "darkgray",
+    datesAndWeekdaysContainer: {
       padding: "5px",
-      borderRadius: "5px",
       display: "flex",
       flexDirection: "column",
       height: "100px",
       flexWrap: "wrap",
       width: "1000px",
     },
+    monthsContainer:{
+      display:"flex",
+      justifyContent:"space-around"
+    },
+    container:{
+      background: "gray",
+      borderRadius: "5px",
+    }
   };
 
 export default function GoalCalendar({datesForCompletedGoals}) {
@@ -69,7 +75,47 @@ export default function GoalCalendar({datesForCompletedGoals}) {
 
 
   return (
-    <Box sx={classes.container}>
+  <Box sx={classes.container}>
+    <Box sx={classes.monthsContainer}>
+     <div></div>
+    <Typography key="jan" sx={classes.weekdayLabel} variant="body2">
+        Jan
+      </Typography>
+    <Typography key="feb" sx={classes.weekdayLabel} variant="body2">
+        Feb
+      </Typography>
+    <Typography key="mar" sx={classes.weekdayLabel} variant="body2">
+        Mar
+      </Typography>
+    <Typography key="apr" sx={classes.weekdayLabel} variant="body2">
+        Apr
+      </Typography>
+    <Typography key="may" sx={classes.weekdayLabel} variant="body2">
+        May
+      </Typography>
+    <Typography key="jun" sx={classes.weekdayLabel} variant="body2">
+        Jun
+      </Typography>
+    <Typography key="jul" sx={classes.weekdayLabel} variant="body2">
+        Jul
+      </Typography>
+    <Typography key="aug" sx={classes.weekdayLabel} variant="body2">
+        Aug
+      </Typography>
+    <Typography key="sep" sx={classes.weekdayLabel} variant="body2">
+        Sep
+      </Typography>
+    <Typography key="oct" sx={classes.weekdayLabel} variant="body2">
+        Oct
+      </Typography>
+    <Typography key="nov" sx={classes.weekdayLabel} variant="body2">
+        Nov
+      </Typography>
+    <Typography key="dec" sx={classes.weekdayLabel} variant="body2">
+        Dec
+      </Typography>
+    </Box>
+    <Box sx={classes.datesAndWeekdaysContainer}>
       <Typography key="mon" sx={classes.weekdayLabel} variant="body2">
         Mon
       </Typography>
@@ -95,11 +141,19 @@ export default function GoalCalendar({datesForCompletedGoals}) {
         if (date == null) {
           return <Paper key={Math.random()} sx={{...classes.day,opacity:0}}></Paper>;
         }
-        if (datesForCompletedGoals != undefined && datesForCompletedGoals.includes(date.toISOString().slice(0,10))) {
-          return <Paper key={date} sx={{...classes.day,backgroundColor:"lightgreen"}}></Paper>;
+        // declared here to avoid nulled dates
+        const year = date.getFullYear();
+        const month = ((date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1));
+        const day = (date.getDate() < 10 ? "0" + date.getDate() : date.getDate());
+        const dateInISOStringForComparingWithCompletedGoalsDates = year + "-" + month + "-" + day;
+        console.log(dateInISOStringForComparingWithCompletedGoalsDates);
+
+        if (datesForCompletedGoals != undefined && datesForCompletedGoals.includes(dateInISOStringForComparingWithCompletedGoalsDates)) {
+          return <Paper key={dateInISOStringForComparingWithCompletedGoalsDates} sx={{...classes.day,backgroundColor:"lightgreen"}}></Paper>;
         }
-        return <Paper key={date} sx={classes.day}></Paper>;
+        return <Paper key={dateInISOStringForComparingWithCompletedGoalsDates} sx={classes.day}></Paper>;
       })}
     </Box>
+</Box>
   );
 }
