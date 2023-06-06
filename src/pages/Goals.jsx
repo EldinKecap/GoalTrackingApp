@@ -7,7 +7,7 @@ import Goal from '../components/Goal'
 export default function Goals({goals}) {
 
   return (
-    <Stack spacing={3}>
+    <Stack spacing={3} mt={5} mb={5}>
       {
         goals.map((goal)=>(
           <Goal key={goal.id} goal={goal} />

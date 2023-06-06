@@ -30,7 +30,8 @@
         "2023-11-24",
         "2023-12-06",
         "2023-12-13",
-        "2023-06-06"
+        "2023-06-06",
+        "2023-06-07"
       ]
     },
     {
@@ -38,8 +39,27 @@
       "title": "Study programming",
       "author": "typicode",
       "datesWhenCompleted": [
-        "2023-06-06"
+        "2023-06-06",
+        "2023-06-07"
       ]
+    },
+    {
+      "author": "ME",
+      "title": "sdfadsf",
+      "description": "",
+      "datesWhenCompleted": [
+        "2023-06-07"
+      ],
+      "id": 3
+    },
+    {
+      "author": "ME",
+      "title": "awesome",
+      "description": "",
+      "datesWhenCompleted": [
+        "2023-06-07"
+      ],
+      "id": 4
     }
   ],
   "comments": [

@@ -9,7 +9,7 @@ import React from "react";
     day: {
       width: 10,
       height: 10,
-      background: "darkgray",
+      background: "#0C80D8",
       borderRadius: "2px",
       color: "transparent",
       fontSize: "10px",
@@ -29,8 +29,7 @@ import React from "react";
     },
     container:{
       m:"10px",
-      background: "gray",
-      borderRadius: "5px" 
+      borderRadius: "2px" 
     }
   };
 

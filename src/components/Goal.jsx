@@ -1,4 +1,4 @@
-import { Paper, Stack, ToggleButton, Typography } from "@mui/material";
+import { Paper, Stack, ToggleButton, Tooltip, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import GoalCalendar from "./GoalCalendar";
 import { Check } from "@mui/icons-material";
@@ -7,9 +7,10 @@ import { format } from "date-fns";
 const classes = {
   container: {
     overflow: "hidden",
+    // border:"1px #67B2FE solid"
   },
   title: {
-    backgroundColor: "gray",
+    backgroundColor:"#0A1929"
   },
 };
 
@@ -17,11 +18,12 @@ export default function Goal({ goal }) {
   const [goalCompleted, setGoalCompleted] = useState(false);
   const today = format(new Date(), "yyyy-MM-dd");
 
-  function goalCompleteHandler() { 
+  function goalCompleteHandler() {
     if (goal.datesWhenCompleted.includes(today)) {
       setGoalCompleted(true);
-      return
+      return;
     }
+
     const serverUrl = import.meta.env.VITE_SERVER_URL;
     goal.datesWhenCompleted = [...goal.datesWhenCompleted, today];
     fetch(serverUrl + "goals/" + goal.id, {
@@ -42,11 +44,11 @@ export default function Goal({ goal }) {
       });
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     if (goal.datesWhenCompleted.includes(today)) {
       setGoalCompleted(true);
     }
-  },[])
+  }, []);
 
   return (
     <Paper sx={classes.container}>
@@ -58,17 +60,20 @@ export default function Goal({ goal }) {
           p="4px"
           sx={classes.title}
         >
-          <Typography ml={3} variant="body1">
+          <Typography ml={3} variant="h6">
             {goal.title}
           </Typography>
-          <ToggleButton
-            value={1}
-            selected={goalCompleted}
-            disabled={goalCompleted}
-            onClick={goalCompleteHandler}
-          >
-            <Check></Check>
-          </ToggleButton>
+          <Tooltip title="Goal completed !" placement="left">
+            <ToggleButton
+              value={1}
+              selected={goalCompleted}
+              disabled={goalCompleted}
+              onClick={goalCompleteHandler}
+              color="success"
+            >
+              <Check></Check>
+            </ToggleButton>
+          </Tooltip>
         </Stack>
         <GoalCalendar
           datesForCompletedGoals={goal.datesWhenCompleted}
