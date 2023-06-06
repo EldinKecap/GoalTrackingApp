@@ -7,8 +7,23 @@ import GoalCalendar from "./components/GoalCalendar";
 import { AppBar, IconButton, Toolbar } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import Goals from "./pages/Goals";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [goals, setGoals] = useState([]);
+
+  useEffect(()=>{
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
+    fetch(serverUrl + "goals")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setGoals(data);
+      });
+  },[])
+
   return (
     <>
       <Layout>
@@ -17,7 +32,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Goals/>}
+            element={<Goals goals={goals}/>}
           />
           <Route
             path="/create"

@@ -28,8 +28,9 @@ import React from "react";
       justifyContent:"space-around"
     },
     container:{
+      m:"10px",
       background: "gray",
-      borderRadius: "5px",
+      borderRadius: "5px" 
     }
   };
 
@@ -75,7 +76,7 @@ export default function GoalCalendar({datesForCompletedGoals}) {
 
 
   return (
-  <Box sx={classes.container}>
+  <Box sx={classes.container} >
     <Box sx={classes.monthsContainer}>
      <div></div>
     <Typography key="jan" sx={classes.datesAndWeekdayLabel} variant="body2">

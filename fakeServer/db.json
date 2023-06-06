@@ -29,11 +29,27 @@
         "2023-10-20",
         "2023-11-24",
         "2023-12-06",
-        "2023-12-13"
+        "2023-12-13",
+        "2023-06-06"
       ]
     },
-    { "id": 2, "title": "Study programming", "author": "typicode" }
+    {
+      "id": 2,
+      "title": "Study programming",
+      "author": "typicode",
+      "datesWhenCompleted": [
+        "2023-06-06"
+      ]
+    }
   ],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" }
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }
