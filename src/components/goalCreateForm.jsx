@@ -38,7 +38,9 @@ export default function GoalCreateForm() {
     }).then((response) => {
       if (response.ok) {
         setSuccessForm(true);
-        setTimeout(()=>{setSuccessForm(false)},1000)
+        setTimeout(() => {
+          setSuccessForm(false);
+        }, 1000);
       }
     });
   }
@@ -54,6 +56,7 @@ export default function GoalCreateForm() {
         onChange={(e) => {
           setGoal(e.target.value);
         }}
+        type="text"
         required
       />
       <TextField
@@ -64,10 +67,11 @@ export default function GoalCreateForm() {
         onChange={(e) => {
           setGoalDescription(e.target.value);
         }}
+        type="text"
       />
       <Button
         variant="contained"
-        color={!successForm ? "info" : "success"}
+        color={!successForm ? "secondary" : "success"}
         type="submit"
         onClick={onFormSubmitHandler}
       >

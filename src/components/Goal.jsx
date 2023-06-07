@@ -10,7 +10,8 @@ const classes = {
     // border:"1px #67B2FE solid"
   },
   title: {
-    backgroundColor:"#0A1929"
+    backgroundColor: "calendarHeader.dark",
+    color: "white"
   },
 };
 
@@ -53,28 +54,28 @@ export default function Goal({ goal }) {
   return (
     <Paper sx={classes.container}>
       <Stack direction={"column"}>
-        <Stack
-          direction={"row"}
-          alignItems="center"
-          justifyContent="space-between"
-          p="4px"
-          sx={classes.title}
-        >
-          <Typography ml={3} variant="h6">
-            {goal.title}
-          </Typography>
-          <Tooltip title="Goal completed !" placement="left">
-            <ToggleButton
-              value={1}
-              selected={goalCompleted}
-              disabled={goalCompleted}
-              onClick={goalCompleteHandler}
-              color="success"
-            >
-              <Check></Check>
-            </ToggleButton>
-          </Tooltip>
-        </Stack>
+          <Stack
+            direction={"row"}
+            alignItems="center"
+            justifyContent="space-between"
+            p="4px"
+            sx={classes.title}
+          >
+            <Typography ml={3} variant="h6">
+              {goal.title}
+            </Typography>
+            <Tooltip title="Goal completed !" placement="left">
+              <ToggleButton
+                value={1}
+                selected={goalCompleted}
+                disabled={goalCompleted}
+                onClick={goalCompleteHandler}
+                color="success"
+              >
+                <Check></Check>
+              </ToggleButton>
+            </Tooltip>
+          </Stack>
         <GoalCalendar
           datesForCompletedGoals={goal.datesWhenCompleted}
         ></GoalCalendar>
