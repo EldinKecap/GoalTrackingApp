@@ -8,6 +8,9 @@ const classes = {
     flexDirection: "column",
     gap: 5,
   },
+  textField:{
+    input: { color: "white" },
+  }
 };
 
 export default function GoalCreateForm() {
@@ -57,6 +60,7 @@ export default function GoalCreateForm() {
           setGoal(e.target.value);
         }}
         type="text"
+        sx={classes.textField}
         required
       />
       <TextField
@@ -68,6 +72,7 @@ export default function GoalCreateForm() {
           setGoalDescription(e.target.value);
         }}
         type="text"
+        sx={classes.textField}
       />
       <Button
         variant="contained"
