@@ -70,7 +70,7 @@ export default function NavBar() {
       <Tooltip title="Change theme">
         <Fab
           sx={classes.changeThemeButton}
-          color="info"
+          color="secondary"
           aria-label="goal list link"
           onClick={() => {
             ThemeContext.setThemeMode(

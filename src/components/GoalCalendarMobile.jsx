@@ -44,7 +44,7 @@ export default function GoalCalendarMobile({datesForCompletedGoals}) {
     <Paper>
       <Typography variant="h6"mt={1}>{currentMonth}</Typography>
       <Stack p={2} spacing={1} direction="row">
-        <Stack height={100} flexWrap="wrap" direction="column" alignItems={"stretch"}>
+        <Stack height={100} width={"100%"} flexWrap="wrap" direction="column" alignItems={"stretch"}>
           <Typography
             key="mon"
             variant="body2"
