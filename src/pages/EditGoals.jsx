@@ -3,6 +3,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Box,
   Button,
   ButtonGroup,
   Dialog,
@@ -16,18 +17,26 @@ import {
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import ThemeModeContext from "../store/ThemeContext";
-import { ThemeContext } from "@emotion/react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function EditGoals({ goalsToEdit }) {
   const [dialogOpen, setDialogOpen] = useState(false);
   const themeMode = useContext(ThemeModeContext);
-  const theme = useContext(ThemeContext);
-  console.log(theme);
+  const navigate = useNavigate();
+
+  function deleteGoal(id) {
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
+    axios.delete(serverUrl + "goals/" + id).then(() => {
+      navigate("/edit");
+    });
+  }
+
   return (
     <>
       {goalsToEdit.map((goal) => {
         return (
-          <>
+          <Box key={goal.id} sx={{mt:"20px", mb:goalsToEdit.indexOf(goal) === goalsToEdit.length - 1 ? "100px":""}}>
             <Dialog open={dialogOpen}>
               <DialogTitle>Are you sure ?</DialogTitle>
               <DialogContent>
@@ -36,21 +45,37 @@ export default function EditGoals({ goalsToEdit }) {
                     color: themeMode.themeMode == "dark" ? "white" : "black",
                   }}
                 >
-                  If you continue you will delete this goal forever
+                  If you continue you will delete this goal and lose all
+                  progress
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button>Stop</Button>
-                <Button onClick={() => setDialogOpen(false)} color="warning">
+                <Button onClick={() => setDialogOpen(false)}>Stop</Button>
+                <Button
+                  onClick={() => {
+                    setDialogOpen(false);
+                    deleteGoal(goal.id);
+                  }}
+                  color="warning"
+                >
                   Continue
                 </Button>
               </DialogActions>
             </Dialog>
-            <Accordion sx={{background:themeMode.themeMode == "dark" ? "" : "#1565B6"}}>
-              <AccordionSummary expandIcon={<ExpandMore />}>
-                <Typography sx={{color:themeMode.themeMode == "dark" ? "" : "white"}}>{goal.title}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
+            <Accordion
+              sx={{
+                background: themeMode.themeMode == "dark" ? "" : "#1565B6",
+              }}
+            >
+              
+              <AccordionSummary expandIcon={<ExpandMore />} >
+                <Typography
+                  sx={{ color: themeMode.themeMode == "dark" ? "" : "white" }}
+                >
+                  {goal.title}
+                </Typography>
+              </AccordionSummary >
+              <AccordionDetails  >
                 <Stack spacing={2}>
                   <TextField variant="outlined" label="Enter goal" required />
                   <TextField
@@ -75,7 +100,7 @@ export default function EditGoals({ goalsToEdit }) {
                 </Stack>
               </AccordionDetails>
             </Accordion>
-          </>
+          </Box>
         );
       })}
     </>
