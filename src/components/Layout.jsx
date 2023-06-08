@@ -22,7 +22,6 @@ export default function Layout({ children }) {
               main: "#1565B6",
             },
             secondary: blue,
-            info: grey,
             calendarHeader: {
               main: "#1565B6",
               light: "#1565B6",

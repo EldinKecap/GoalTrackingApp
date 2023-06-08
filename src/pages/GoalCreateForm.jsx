@@ -49,6 +49,7 @@ export default function GoalCreateForm() {
   }
 
   return (
+    
     <FormControl sx={classes.form}>
       <TextField
         error={goal == "" ? true : false}

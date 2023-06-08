@@ -1,6 +1,8 @@
 import {
   Add,
   DarkMode,
+  DeleteForever,
+  Edit,
   LightMode,
   PlaylistAddCheck,
 } from "@mui/icons-material";
@@ -29,14 +31,22 @@ export default function NavBar() {
       zIndex: 1,
       top: -20,
       left: 0,
-      right: 150,
+      right: 130,
       margin: "0 auto",
     },
     changeThemeButton: {
       position: "absolute",
       zIndex: 1,
       top: -20,
-      left: 150,
+      left: 130,
+      right: 0,
+      margin: "0 auto",
+    },
+    editLink: {
+      position: "absolute",
+      zIndex: 1,
+      top: -10,
+      left: 255,
       right: 0,
       margin: "0 auto",
     },
@@ -64,6 +74,17 @@ export default function NavBar() {
             aria-label="goal list link"
           >
             <PlaylistAddCheck />
+          </Fab>
+        </Tooltip>
+      </Link>
+      <Link style={{ color: "white" }} to="/edit">
+        <Tooltip title="Edit or Delete Goals">
+          <Fab
+            sx={classes.editLink}
+            color="info"
+            aria-label="edit goals"
+          >
+            <Edit />
           </Fab>
         </Tooltip>
       </Link>

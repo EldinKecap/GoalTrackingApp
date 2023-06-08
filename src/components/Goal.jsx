@@ -71,7 +71,8 @@ export default function Goal({ goal }) {
           sx={classes.title}
         >
           <Typography
-            ml={3}
+            ml={2}
+            fontSize={mobile ? 17 : 20}
             variant="h6"
             noWrap
             maxWidth={mobile ? 160 : 300}
