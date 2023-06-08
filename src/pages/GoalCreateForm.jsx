@@ -18,11 +18,21 @@ export default function GoalCreateForm() {
   const [goalDescription, setGoalDescription] = useState("");
   const [successForm, setSuccessForm] = useState(false);
 
+  if( goal != undefined && goal.length > 20 ){
+    let shortenedGoalName = goal.slice(0,20);
+    setGoal(shortenedGoalName)
+  }
+
   function onFormSubmitHandler() {
     if (goal == undefined) {
       setGoal("");
       return;
     }
+
+    if (goal == "") {
+      return;
+    }
+
     setSuccessForm(false);
 
     const serverUrl = import.meta.env.VITE_SERVER_URL;

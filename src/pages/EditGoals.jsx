@@ -22,8 +22,15 @@ import { useNavigate } from "react-router-dom";
 
 export default function EditGoals({ goalsToEdit }) {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [goalName, setGoalName] = useState();
+  const [goalDescription, setGoalDescription] = useState();
   const themeMode = useContext(ThemeModeContext);
   const navigate = useNavigate();
+
+  if( goalName != undefined && goalName.length >20 ){
+    let shortenedGoalName = goalName.slice(0,20);
+    setGoalName(shortenedGoalName)
+  }
 
   function deleteGoal(id) {
     const serverUrl = import.meta.env.VITE_SERVER_URL;
@@ -32,11 +39,36 @@ export default function EditGoals({ goalsToEdit }) {
     });
   }
 
+  function editGoal(id) {
+    if (goalName == "" || goalName == undefined) {
+      setGoalName("")
+      return;
+    }
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
+    axios
+      .patch(serverUrl + "goals/" + id, {
+        title: goalName,
+        description: goalDescription,
+      })
+      .then(() => {
+        navigate("/");
+      });
+  }
+
   return (
     <>
       {goalsToEdit.map((goal) => {
         return (
-          <Box key={goal.id} sx={{mt:"20px", mb:goalsToEdit.indexOf(goal) === goalsToEdit.length - 1 ? "100px":""}}>
+          <Box
+            key={goal.id}
+            sx={{
+              mt: "20px",
+              mb:
+                goalsToEdit.indexOf(goal) === goalsToEdit.length - 1
+                  ? "100px"
+                  : "",
+            }}
+          >
             <Dialog open={dialogOpen}>
               <DialogTitle>Are you sure ?</DialogTitle>
               <DialogContent>
@@ -67,18 +99,30 @@ export default function EditGoals({ goalsToEdit }) {
                 background: themeMode.themeMode == "dark" ? "" : "#1565B6",
               }}
             >
-              
-              <AccordionSummary expandIcon={<ExpandMore />} >
+              <AccordionSummary expandIcon={<ExpandMore />}>
                 <Typography
                   sx={{ color: themeMode.themeMode == "dark" ? "" : "white" }}
                 >
                   {goal.title}
                 </Typography>
-              </AccordionSummary >
-              <AccordionDetails  >
+              </AccordionSummary>
+              <AccordionDetails>
                 <Stack spacing={2}>
-                  <TextField variant="outlined" label="Enter goal" required />
                   <TextField
+                    error={goalName == "" ? true : false}
+                    value={goalName}
+                    onChange={(e) => {
+                      setGoalName(e.currentTarget.value);
+                    }}
+                    variant="outlined"
+                    label="Enter goal"
+                    required
+                  />
+                  <TextField
+                    value={goalDescription}
+                    onChange={(e) => {
+                      setGoalDescription(e.currentTarget.value);
+                    }}
                     variant="outlined"
                     label="Enter goal description"
                   />
@@ -93,7 +137,14 @@ export default function EditGoals({ goalsToEdit }) {
                     >
                       Delete
                     </Button>
-                    <Button variant="contained" color="primary" fullWidth>
+                    <Button
+                      onClick={() => {
+                        editGoal(goal.id);
+                      }}
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                    >
                       Edit
                     </Button>
                   </ButtonGroup>

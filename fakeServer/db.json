@@ -41,8 +41,18 @@
       "author": "typicode",
       "datesWhenCompleted": [
         "2023-06-06",
-        "2023-06-07"
+        "2023-06-07",
+        "2023-06-08"
       ]
+    },
+    {
+      "author": "ME",
+      "title": "Send an application",
+      "description": "",
+      "datesWhenCompleted": [
+        "2023-06-08"
+      ],
+      "id": 3
     }
   ],
   "comments": [
