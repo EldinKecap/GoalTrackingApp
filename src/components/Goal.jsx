@@ -27,7 +27,6 @@ export default function Goal({ goal }) {
   const mobile = useMediaQuery("(max-width: 1150px)");
   const [goalCompleted, setGoalCompleted] = useState(false);
   const today = format(new Date(), "yyyy-MM-dd");
-  console.log(mobile);
   function goalCompleteHandler() {
     if (goal.datesWhenCompleted.includes(today)) {
       setGoalCompleted(true);

@@ -11,17 +11,16 @@ const classes = {
     color: "transparent",
     fontSize: "10px",
     marginTop: "4px",
-    ml:"10px"
+    ml: "10px",
   },
   datesAndWeekdayLabel: {
     fontSize: "10px",
     lineHeight: "1",
     marginTop: "4px",
-
   },
 };
 
-export default function GoalCalendarMobile({datesForCompletedGoals}) {
+export default function GoalCalendarMobile({ datesForCompletedGoals }) {
   const currentDate = new Date();
   const currentMonth = format(currentDate, "MMM");
   const currentMonthIndex = currentDate.getMonth();
@@ -33,18 +32,22 @@ export default function GoalCalendarMobile({datesForCompletedGoals}) {
 
   while (dateOfTheMonth.getMonth() == currentMonthIndex) {
     allDaysInAMonth.push(dateOfTheMonth);
-    // console.log(dateOfTheMonth);
     dateOfTheMonth = addDays(dateOfTheMonth, 1);
-    // console.log(dateOfTheMonth);
   }
-  console.log(allDaysInAMonth);
-  //   console.log(currentMonth);
 
   return (
     <Paper>
-      <Typography variant="h6"mt={1}>{currentMonth}</Typography>
+      <Typography variant="h6" mt={1}>
+        {currentMonth}
+      </Typography>
       <Stack p={2} spacing={1} direction="row">
-        <Stack height={100} width={"100%"} flexWrap="wrap" direction="column" alignItems={"stretch"}>
+        <Stack
+          height={100}
+          width={"100%"}
+          flexWrap="wrap"
+          direction="column"
+          alignItems={"stretch"}
+        >
           <Typography
             key="mon"
             variant="body2"
@@ -105,12 +108,15 @@ export default function GoalCalendarMobile({datesForCompletedGoals}) {
               );
             const formatedDateForComparing = format(date, "yyyy-MM-dd");
             // console.log(formatedDateForComparing);
-            if(datesForCompletedGoals.includes(formatedDateForComparing)){
-                return (
-                    <Paper key={formatedDateForComparing} sx={{...classes.day, backgroundColor:'yellowgreen'}}>
-                      a
-                    </Paper>
-                  );
+            if (datesForCompletedGoals.includes(formatedDateForComparing)) {
+              return (
+                <Paper
+                  key={formatedDateForComparing}
+                  sx={{ ...classes.day, backgroundColor: "yellowgreen" }}
+                >
+                  a
+                </Paper>
+              );
             }
             return (
               <Paper key={formatedDateForComparing} sx={classes.day}>

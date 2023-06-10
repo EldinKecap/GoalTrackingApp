@@ -4,6 +4,7 @@ import {
   DeleteForever,
   Edit,
   LightMode,
+  Login,
   PlaylistAddCheck,
 } from "@mui/icons-material";
 import { AppBar, Fab, Tooltip, Typography } from "@mui/material";
@@ -50,6 +51,14 @@ export default function NavBar() {
       right: 0,
       margin: "0 auto",
     },
+    loginButton: {
+      position: "absolute",
+      zIndex: 1,
+      top: -10,
+      left: 0,
+      right: 255,
+      margin: "0 auto",
+    },
   };
 
   const ThemeContext = useContext(ThemeModeContext);
@@ -79,11 +88,7 @@ export default function NavBar() {
       </Link>
       <Link style={{ color: "white" }} to="/edit">
         <Tooltip title="Edit or Delete Goals">
-          <Fab
-            sx={classes.editLink}
-            color="info"
-            aria-label="edit goals"
-          >
+          <Fab sx={classes.editLink} color="info" aria-label="edit goals">
             <Edit />
           </Fab>
         </Tooltip>
@@ -102,6 +107,13 @@ export default function NavBar() {
           {ThemeContext.themeMode === "dark" ? <LightMode /> : <DarkMode />}
         </Fab>
       </Tooltip>
+      <Link to="/login">
+        <Tooltip title="log in/out">
+          <Fab sx={classes.loginButton} color="info" aria-label="log in/out">
+            <Login />
+          </Fab>
+        </Tooltip>
+      </Link>
     </AppBar>
   );
 }
