@@ -12,7 +12,6 @@ import ThemeModeContext from "../store/ThemeContext";
 
 export default function Layout({ children }) {
   const [themeMode, setThemeMode] = useState("dark");
-  console.log(themeMode);
   const theme = createTheme({
     palette:
       themeMode === "dark"

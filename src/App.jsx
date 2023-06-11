@@ -15,8 +15,11 @@ import Error from "./pages/Error";
 function App() {
   const [goals, setGoals] = useState([]);
   const [goalsLoading, setGoalsLoading] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user"));
+  // console.log(user);
   let location = useLocation();
-  console.log(location);
+
+  // console.log(location);
   useEffect(() => {
     const serverUrl = import.meta.env.VITE_SERVER_URL;
     setGoalsLoading(true);
@@ -40,12 +43,29 @@ function App() {
         <NavBar />
         <GoalsLoading.Provider value={goalsLoading}>
           <Routes>
-            <Route path="/" element={<Goals goals={goals} />} />
-            <Route path="/create" element={<GoalCreateForm />} />
-            <Route path="/edit" element={<EditGoals goalsToEdit={goals} />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/createAccount" element={<CreateAnAccount />} />
-            <Route path="*" element={<Error message="Page does not exist" />} />
+            {!user ? (
+              <>
+                <Route path="/login" element={<Login />} />
+                <Route path="/createAccount" element={<CreateAnAccount />} />
+                <Route
+                  path="*"
+                  element={<Error message="User not logged in" />}
+                />
+              </>
+            ) : (
+              <>
+                <Route path="/" element={<Goals goals={goals} />} />
+                <Route path="/create" element={<GoalCreateForm />} />
+                <Route
+                  path="/edit"
+                  element={<EditGoals goalsToEdit={goals} />}
+                />
+                <Route
+                  path="*"
+                  element={<Error message="Page does not exist" />}
+                />
+              </>
+            )}
           </Routes>
         </GoalsLoading.Provider>
       </Layout>
