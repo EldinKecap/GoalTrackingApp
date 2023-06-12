@@ -1,3 +1,4 @@
+import { doc, deleteDoc } from "firebase/firestore";
 import { ExpandMore } from "@mui/icons-material";
 import {
   Accordion,
@@ -19,6 +20,7 @@ import React, { useContext, useState } from "react";
 import ThemeModeContext from "../store/ThemeContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import db from "../firebase/firebaseDB";
 
 export default function EditGoals({ goalsToEdit }) {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -26,17 +28,19 @@ export default function EditGoals({ goalsToEdit }) {
   const [goalDescription, setGoalDescription] = useState();
   const themeMode = useContext(ThemeModeContext);
   const navigate = useNavigate();
-
-  if( goalName != undefined && goalName.length >20 ){
-    let shortenedGoalName = goalName.slice(0,20);
+// console.log(goalsToEdit);
+  if (goalName != undefined && goalName.length > 20) {
+    let shortenedGoalName = goalName.slice(0, 20);
     setGoalName(shortenedGoalName)
   }
 
   function deleteGoal(id) {
-    const serverUrl = import.meta.env.VITE_SERVER_URL;
-    axios.delete(serverUrl + "goals/" + id).then(() => {
-      navigate("/edit");
-    });
+    console.log(id);
+    // deleteDoc(doc(db, "goals", id))
+    // .then(() => {
+    //   navigate('/edit');
+    // });
+
   }
 
   function editGoal(id) {
@@ -44,20 +48,14 @@ export default function EditGoals({ goalsToEdit }) {
       setGoalName("")
       return;
     }
-    const serverUrl = import.meta.env.VITE_SERVER_URL;
-    axios
-      .patch(serverUrl + "goals/" + id, {
-        title: goalName,
-        description: goalDescription,
-      })
-      .then(() => {
-        navigate("/");
-      });
+
   }
 
   return (
     <>
       {goalsToEdit.map((goal) => {
+        // console.log(goalsToEdit);
+        // console.log(goal);
         return (
           <Box
             key={goal.id}
@@ -85,8 +83,9 @@ export default function EditGoals({ goalsToEdit }) {
                 <Button onClick={() => setDialogOpen(false)}>Stop</Button>
                 <Button
                   onClick={() => {
-                    setDialogOpen(false);
                     deleteGoal(goal.id);
+                    console.log(goal);
+                    setDialogOpen(false);
                   }}
                   color="warning"
                 >

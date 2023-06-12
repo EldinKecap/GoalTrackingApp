@@ -8,9 +8,11 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import GoalCalendar from "./GoalCalendar";
-import { Check } from "@mui/icons-material";
+import { Check, DoneAll } from "@mui/icons-material";
 import { format } from "date-fns";
 import GoalCalendarMobile from "./GoalCalendarMobile";
+import { doc, setDoc } from "firebase/firestore";
+import db from "../firebase/firebaseDB";
 
 const classes = {
   container: {
@@ -33,24 +35,13 @@ export default function Goal({ goal }) {
       return;
     }
 
-    const serverUrl = import.meta.env.VITE_SERVER_URL;
     goal.datesWhenCompleted = [...goal.datesWhenCompleted, today];
-    fetch(serverUrl + "goals/" + goal.id, {
-      method: "PATCH",
-      body: JSON.stringify({
-        datesWhenCompleted: goal.datesWhenCompleted,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
+    const goalRef = doc(db, "goals", goal.id);
+    setDoc(goalRef, { datesWhenCompleted: goal.datesWhenCompleted }, { merge: true })
+      .then(() => {
         setGoalCompleted(true);
-      });
+      })
+    // console.log(res);
   }
 
   useEffect(() => {
