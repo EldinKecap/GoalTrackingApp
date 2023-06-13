@@ -1,11 +1,13 @@
 import { Alert, Button, Stack, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
-  signInWithEmailAndPassword,
 } from "firebase/auth";
 import app from "../firebase/firebaseSetup";
+import TitleBar from "../components/TitleBar";
+import UserProfileContext from "../store/UserProfileContext";
+import { useNavigate } from "react-router-dom/dist";
 
 export default function CreateAnAccount() {
   const auth = getAuth(app);
@@ -17,6 +19,8 @@ export default function CreateAnAccount() {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [accountCreated, setAccountCreated] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const userCtx = useContext(UserProfileContext);
+  const navigate = useNavigate();
 
   function onSubmitHandler() {
     setAccountCreated(false);
@@ -45,7 +49,9 @@ export default function CreateAnAccount() {
         const user = userCredential.user;
         setAccountCreated(true);
         localStorage.setItem("user", JSON.stringify(user));
-        console.log(user);
+        userCtx.setUser(user)
+        console.log(userCtx.user);
+        navigate('/')
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -53,7 +59,8 @@ export default function CreateAnAccount() {
       });
   }
 
-  return (
+  return (<>
+    <TitleBar title={"Create an account"} />
     <Stack spacing={2}>
       <TextField
         label="Enter email"
@@ -106,5 +113,6 @@ export default function CreateAnAccount() {
 
       {accountCreated ? <Alert severity="success">Account created</Alert> : ""}
     </Stack>
+  </>
   );
 }

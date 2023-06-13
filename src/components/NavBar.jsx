@@ -12,6 +12,7 @@ import { AppBar, Fab, Tooltip, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ThemeModeContext from "../store/ThemeContext";
+import UserProfileContext from "../store/UserProfileContext";
 
 const classes = {
   createGoalLink: {
@@ -35,7 +36,7 @@ const classes = {
     right: 130,
     margin: "0 auto",
   },
-  changeThemeButton: {
+  editLink: {
     position: "absolute",
     zIndex: 1,
     top: -20,
@@ -43,7 +44,7 @@ const classes = {
     right: 0,
     margin: "0 auto",
   },
-  editLink: {
+  changeThemeButton: {
     position: "absolute",
     zIndex: 1,
     top: -10,
@@ -65,8 +66,12 @@ export default function NavBar() {
   const user = JSON.parse(localStorage.getItem("user"));
   const ThemeContext = useContext(ThemeModeContext);
   const navigator = useNavigate();
+  const userCtx = useContext(UserProfileContext);
+
   function onLogoutClick() {
     localStorage.removeItem("user");
+    userCtx.setUser(null);
+    console.log(userCtx.user);
     navigator('/login');
   }
 

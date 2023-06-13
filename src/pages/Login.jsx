@@ -1,8 +1,9 @@
 import { Alert, Button, Stack, TextField, Typography } from "@mui/material";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import app from "../firebase/firebaseSetup";
+import UserProfileContext from "../store/UserProfileContext";
 
 export default function Login() {
   const auth = getAuth(app);
@@ -12,7 +13,9 @@ export default function Login() {
   const [passwordError, setPasswordError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
- const navigator = useNavigate();
+  const userCtx = useContext(UserProfileContext);
+  const navigator = useNavigate();
+  
   function onSubmitHandler() {
     setLoggedIn(false);
     setErrorMessage("");
@@ -34,7 +37,8 @@ export default function Login() {
       .then((userCredential) => {
         const user = userCredential.user;
         localStorage.setItem("user", JSON.stringify(user));
-        console.log(user);
+        userCtx.setUser(user);
+        console.log(userCtx.user);
         setLoggedIn(true);
         navigator('/')
       })
