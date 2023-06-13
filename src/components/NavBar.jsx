@@ -72,7 +72,7 @@ export default function NavBar() {
     localStorage.removeItem("user");
     userCtx.setUser(null);
     console.log(userCtx.user);
-    navigator('/login');
+    navigator('/');
   }
 
   return (
@@ -121,7 +121,7 @@ export default function NavBar() {
         </Fab>
       </Tooltip>
       {!user ? (
-        <Link to="/login">
+        <Link to="/">
           <Tooltip title="Login">
             <Fab sx={classes.loginButton} color="info" aria-label="login">
               <Login />

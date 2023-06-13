@@ -27,7 +27,7 @@ function App() {
           <Routes>
             {!user ? (
               <>
-                <Route path="/login" element={<Login />} />
+                <Route path="/" element={<Login />} />
                 <Route path="/createAccount" element={<CreateAnAccount />} />
                 <Route
                   path="*"
