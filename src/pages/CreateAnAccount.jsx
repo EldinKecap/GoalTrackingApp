@@ -25,27 +25,28 @@ export default function CreateAnAccount() {
   function onSubmitHandler() {
     setAccountCreated(false);
     setErrorMessage("");
-
-    if (email == "") {
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    if (trimmedEmail == "") {
       setEmailError(true);
       return;
     }
-    if (password == "") {
+    if (trimmedPassword == "") {
       setPasswordError(true);
       return;
     }
 
-    if (password != confirmPassword) {
+    if (trimmedPassword != confirmPassword) {
       setErrorMessage("Passwords do not match");
       return;
     }
 
-    if (!email.includes("@")) {
+    if (!trimmedEmail.includes("@")) {
       setErrorMessage("Email missing @ symbol");
       return;
     }
 
-    createUserWithEmailAndPassword(auth, email.trim(), password)
+    createUserWithEmailAndPassword(auth, trimmedEmail, trimmedPassword)
       .then((userCredential) => {
         const user = userCredential.user;
         setAccountCreated(true);

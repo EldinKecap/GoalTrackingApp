@@ -19,21 +19,23 @@ export default function Login() {
   function onSubmitHandler() {
     setLoggedIn(false);
     setErrorMessage("");
-    if (email == "") {
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    if (trimmedEmail == "") {
       setEmailError(true);
       return;
     }
-    if (password == "") {
+    if (trimmedPassword == "") {
       setPasswordError(true);
       return;
     }
 
-    if (!email.includes("@")) {
+    if (!trimmedEmail.includes("@")) {
       setErrorMessage("Email missing @ symbol");
       return;
     }
 
-    signInWithEmailAndPassword(auth, email.trim(), password)
+    signInWithEmailAndPassword(auth, trimmedEmail, trimmedPassword)
       .then((userCredential) => {
         const user = userCredential.user;
         localStorage.setItem("user", JSON.stringify(user));
