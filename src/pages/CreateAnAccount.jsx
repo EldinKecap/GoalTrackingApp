@@ -25,6 +25,7 @@ export default function CreateAnAccount() {
   function onSubmitHandler() {
     setAccountCreated(false);
     setErrorMessage("");
+
     if (email == "") {
       setEmailError(true);
       return;
@@ -44,7 +45,7 @@ export default function CreateAnAccount() {
       return;
     }
 
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email.trim(), password)
       .then((userCredential) => {
         const user = userCredential.user;
         setAccountCreated(true);

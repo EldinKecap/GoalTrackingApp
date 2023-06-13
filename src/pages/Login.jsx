@@ -33,7 +33,7 @@ export default function Login() {
       return;
     }
 
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email.trim(), password)
       .then((userCredential) => {
         const user = userCredential.user;
         localStorage.setItem("user", JSON.stringify(user));
