@@ -1,13 +1,9 @@
-import { Box, Stack, ThemeProvider, createTheme } from "@mui/material";
+import { Stack, ThemeProvider, createTheme } from "@mui/material";
 import {
-  blueGrey,
   blue,
-  grey,
   lightBlue,
-  indigo,
-  purple,
 } from "@mui/material/colors";
-import React, { useState } from "react";
+import  { useState } from "react";
 import ThemeModeContext from "../store/ThemeContext";
 
 export default function Layout({ children }) {

@@ -6,9 +6,9 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import GoalCalendar from "./GoalCalendar";
-import { Check, DoneAll } from "@mui/icons-material";
+import { Check } from "@mui/icons-material";
 import { format } from "date-fns";
 import GoalCalendarMobile from "./GoalCalendarMobile";
 import { doc, setDoc } from "firebase/firestore";
@@ -17,7 +17,6 @@ import db from "../firebase/firebaseDB";
 const classes = {
   container: {
     overflow: "hidden",
-    // border:"1px #67B2FE solid"
   },
   title: {
     backgroundColor: "calendarHeader.dark",

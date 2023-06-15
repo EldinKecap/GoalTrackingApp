@@ -1,5 +1,5 @@
 import { Alert, Button, Stack, TextField } from "@mui/material";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -57,6 +57,7 @@ export default function CreateAnAccount() {
       })
       .catch((error) => {
         const errorCode = error.code;
+        console.log(errorCode);
         setErrorMessage(error.message.slice(10));
       });
   }

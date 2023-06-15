@@ -1,5 +1,5 @@
 import { Box, Paper, Typography } from "@mui/material";
-import React from "react";
+
 const classes = {
   datesAndWeekdayLabel: {
     fontSize: "10px",

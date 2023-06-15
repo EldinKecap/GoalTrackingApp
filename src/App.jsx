@@ -1,6 +1,6 @@
 import "./App.css";
 import Layout from "./components/Layout";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Goals from "./pages/Goals";
 import NavBar from "./components/NavBar";
 import EditGoals from "./pages/EditGoals";
@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 import CreateAnAccount from "./pages/CreateAnAccount";
 import Error from "./pages/Error";
 import EditGoalsForm from "./components/EditGoalForm";
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import UserProfileContext from "./store/UserProfileContext";
 
 function App() {

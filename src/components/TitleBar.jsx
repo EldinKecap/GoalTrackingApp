@@ -1,5 +1,4 @@
 import { AppBar, Typography } from "@mui/material";
-import React from "react";
 
 export default function TitleBar({title}) {
     

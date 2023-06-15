@@ -1,4 +1,4 @@
-import { addDoc, collection, doc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { getAuth } from 'firebase/auth'
 import FormControl from "@mui/material/FormControl";
 import { Alert, Button, TextField } from "@mui/material";
@@ -39,6 +39,7 @@ export default function GoalCreateForm() {
       datesWhenCompleted: [],
       title: goal
     }).then((data) => {
+      console.log(data);
       setSuccessForm(true);
       setTimeout(() => {
         navigate('/')

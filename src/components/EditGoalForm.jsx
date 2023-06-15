@@ -2,140 +2,138 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ThemeModeContext from "../store/ThemeContext";
 import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
-    Box,
-    Button,
-    ButtonGroup,
-    CircularProgress,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    Paper,
-    Stack,
-    TextField,
-    Typography,
+  Box,
+  Button,
+  ButtonGroup,
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
 } from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
-import { deleteDoc, doc, getDoc, query, setDoc, where } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 import db from "../firebase/firebaseDB";
 import { getAuth } from "firebase/auth";
 
-
 export default function EditGoalsForm() {
-    const params = useParams();
-    const goalId = params.id
-    const themeMode = useContext(ThemeModeContext);
-    const [dialogOpen, setDialogOpen] = useState(false);
-    const [title, setTitle] = useState("");
-    const [goalName, setGoalName] = useState("");
-    const navigate = useNavigate();
+  const params = useParams();
+  const goalId = params.id;
+  const themeMode = useContext(ThemeModeContext);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [goalName, setGoalName] = useState("");
+  const navigate = useNavigate();
+  getAuth();
+
+  useEffect(() => {
     const goalRef = doc(db, "goals", goalId);
-    getAuth();
 
-    useEffect(() => {
-        getDoc(goalRef).then((goalSnapshot) => {
-            const goalTitle = goalSnapshot.data().title;
-            setTitle(goalTitle);
-            setGoalName(goalTitle)
-        })
-    }, [])
+    getDoc(goalRef).then((goalSnapshot) => {
+      const goalTitle = goalSnapshot.data().title;
+      setTitle(goalTitle);
+      setGoalName(goalTitle);
+    });
+  }, []);
 
+  function deleteGoal() {
+    const goalRef = doc(db, "goals", goalId);
 
-    function deleteGoal(id) {
-        deleteDoc(goalRef).then(() => {
-            navigate('/edit');
-        });
-    }
+    deleteDoc(goalRef).then(() => {
+      navigate("/edit");
+    });
+  }
 
-    function editGoal(id) {
-        setDoc(goalRef, { title: goalName }, { merge: true }).then(() => {
-            navigate('/edit');
-        })
-    }
+  function editGoal() {
+    const goalRef = doc(db, "goals", goalId);
 
-    console.log(params);
-    // return <Typography>{}</Typography>
-    return <Box
-        key={goalId}
-        sx={{
-            mt: "20px",
+    setDoc(goalRef, { title: goalName }, { merge: true }).then(() => {
+      navigate("/edit");
+    });
+  }
 
-        }}
+  return (
+    <Box
+      key={goalId}
+      sx={{
+        mt: "20px",
+      }}
     >
-        {!title ? <CircularProgress color="secondary" /> :
-            <Paper
-                sx={{
-                    background: themeMode.themeMode == "dark" ? "" : "#1565B6",
-                    p: "10px"
+      {!title ? (
+        <CircularProgress color="secondary" />
+      ) : (
+        <Paper
+          sx={{
+            background: themeMode.themeMode == "dark" ? "" : "#1565B6",
+            p: "10px",
+          }}
+        >
+          <Stack spacing={2}>
+            <Typography>{title}</Typography>
+            <TextField
+              error={goalName == "" ? true : false}
+              value={goalName}
+              onChange={(e) => {
+                setGoalName(e.currentTarget.value);
+              }}
+              variant="outlined"
+              label="Enter goal"
+              required
+              inputProps={{ maxLength: 30 }}
+            />
+            <ButtonGroup>
+              <Button
+                variant="contained"
+                color="warning"
+                fullWidth
+                onClick={() => {
+                  setDialogOpen(true);
                 }}
-            >
-
-                <Stack spacing={2}>
-                    <Typography>{title}</Typography>
-                    <TextField
-                        error={goalName == "" ? true : false}
-                        value={goalName}
-                        onChange={(e) => {
-                            setGoalName(e.currentTarget.value);
-                        }}
-                        variant="outlined"
-                        label="Enter goal"
-                        required
-                        inputProps={{ maxLength: 30 }}
-                    />
-                    <ButtonGroup>
-                        <Button
-                            variant="contained"
-                            color="warning"
-                            fullWidth
-                            onClick={() => {
-                                setDialogOpen(true);
-                            }}
-                        >
-                            Delete
-                        </Button>
-                        <Button
-                            onClick={() => {
-                                editGoal(goalId);
-                            }}
-                            variant="contained"
-                            color="primary"
-                            fullWidth
-                        >
-                            Edit
-                        </Button>
-                    </ButtonGroup>
-                </Stack>
-                <Dialog open={dialogOpen}>
-                    <DialogTitle>Are you sure ?</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText
-                            sx={{
-                                color: themeMode.themeMode == "dark" ? "white" : "black",
-                            }}
-                        >
-                            If you continue you will delete this goal and lose all
-                            progress
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={() => setDialogOpen(false)}>Stop</Button>
-                        <Button
-                            onClick={() => {
-                                setDialogOpen(false);
-                                deleteGoal(goalId);
-                            }}
-                            color="warning"
-                        >
-                            Continue
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </Paper>
-        }
+              >
+                Delete
+              </Button>
+              <Button
+                onClick={() => {
+                  editGoal(goalId);
+                }}
+                variant="contained"
+                color="primary"
+                fullWidth
+              >
+                Edit
+              </Button>
+            </ButtonGroup>
+          </Stack>
+          <Dialog open={dialogOpen}>
+            <DialogTitle>Are you sure ?</DialogTitle>
+            <DialogContent>
+              <DialogContentText
+                sx={{
+                  color: themeMode.themeMode == "dark" ? "white" : "black",
+                }}
+              >
+                If you continue you will delete this goal and lose all progress
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setDialogOpen(false)}>Stop</Button>
+              <Button
+                onClick={() => {
+                  setDialogOpen(false);
+                  deleteGoal(goalId);
+                }}
+                color="warning"
+              >
+                Continue
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Paper>
+      )}
     </Box>
+  );
 }

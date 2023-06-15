@@ -1,15 +1,14 @@
 import {
   Add,
   DarkMode,
-  DeleteForever,
   Edit,
   LightMode,
   Login,
   Logout,
   PlaylistAddCheck,
 } from "@mui/icons-material";
-import { AppBar, Fab, Tooltip, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import { AppBar, Fab, Tooltip } from "@mui/material";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ThemeModeContext from "../store/ThemeContext";
 import UserProfileContext from "../store/UserProfileContext";

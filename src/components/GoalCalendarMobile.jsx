@@ -1,6 +1,5 @@
 import { Paper, Stack, Typography } from "@mui/material";
-import { addDays, daysInWeek, format, getDate, getDay } from "date-fns";
-import React from "react";
+import { addDays, format, getDay } from "date-fns";
 
 const classes = {
   day: {
