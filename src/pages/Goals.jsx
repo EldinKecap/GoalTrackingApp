@@ -10,8 +10,6 @@ import db from "../firebase/firebaseDB";
 
 export default function Goals() {
   const mobile = useMediaQuery("(max-width: 1150px)");
-  // PART OF OLD WAY
-  // const [goals, goalsLoading] = useGetGoals();
   const [showSkeleton, setShowSkeleton] = useState(true); 
   const [showNoGoals, setShowNoGoals] = useState(false); 
 
@@ -37,7 +35,6 @@ export default function Goals() {
   } catch (error) {
       console.log(error);
   }
-  console.log(goalsArr);
   },[])
 
   useEffect(()=>{
@@ -71,20 +68,7 @@ export default function Goals() {
        {
         showNoGoals?<Typography variant="h5">No Goals</Typography>:''
        }
-        {/*  OLD WAY
-        {!goalsLoading ? goals.length == 0 ? <Typography variant="h5">No Goals</Typography> : (
-          goals.map((goal) => {
-            return <Goal key={goal.id} goal={goal} />
-          }
-          )) : mobile ? (
-            <>
-              <Skeleton variant="rounded" height={230} width={220} />
-            </>
-          ) : (
-          <>
-            <Skeleton variant="rounded" height={200} width={1030} />
-          </>
-        )} */}
+   
       </Stack>
     </>
   );
