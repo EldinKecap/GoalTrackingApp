@@ -25,7 +25,7 @@ export default function GoalCalendarMobile({ datesForCompletedGoals }) {
   const currentMonthIndex = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
   let dateOfTheMonth = new Date(currentYear, currentMonthIndex, 1);
-  const dayOfTheWeek = getDay(dateOfTheMonth);
+  const dayOfTheWeek = getDay(dateOfTheMonth) - 1;
   const allDaysInAMonth = new Array(dayOfTheWeek).fill(null, 0);
 
   while (dateOfTheMonth.getMonth() == currentMonthIndex) {
