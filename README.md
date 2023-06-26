@@ -9,7 +9,8 @@ In your firebase console you will have to create a new app and set up authentica
 
 You will need to create a .env file with your firebase keys.
 **The env variable names must start with VITE.**
-The env variable names can be found in **/src/firebase/firebaseSetup**
+The env variable names can be found in **/src/firebase/firebaseSetup** .
+
 Type 
 ### npm install
 into your terminal. Once all the packages are finished installing start the app with 
